@@ -26,7 +26,7 @@ Proyek ini dibangun 100% menggunakan metodologi *Vibecoding*. Alih-alih menulis 
 
 ## ⚠️ Catatan Khusus untuk Juri (Integrasi Mayar)
 Integrasi *payment gateway* Mayar pada repositori dan *live demo* ini secara sengaja diatur menggunakan **Environment Sandbox (Mode Uji Coba)**. 
-Oleh karena itu, saat di-*redirect* ke halaman *checkout* Mayar, opsi pembayaran *live* seperti QRIS atau Virtual Account mungkin tidak ditampilkan oleh sistem Mayar demi alasan keamanan (*unverified testing account*). Logika *API Request* dan integrasi *payload* telah berjalan 100% sukses. Transisi ke *Production* dapat dilakukan hanya dengan menukar `MAYAR_API_KEY` di *Environment Variables*.
+Oleh karena itu, saat di-*redirect* ke halaman *checkout* Mayar, opsi pembayaran *live* seperti QRIS atau Virtual Account mungkin tidak ditampilkan oleh sistem Mayar demi alasan keamanan (*unverified testing account*). Logika *API Request* dan integrasi *payload* telah berjalan 100% sukses. Transisi ke *Production* dapat dilakukan hanya dengan menukar `MAYAR_API_KEY` di *Environment Variables* lalu verifikasi akun untuk integrasi nyata dengan sukses.
 
 ## 💻 Cara Menjalankan di Lokal (Local Setup)
 
