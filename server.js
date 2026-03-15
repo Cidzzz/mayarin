@@ -8,8 +8,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const app = express()
 const PORT = process.env.PORT || 3030
 
-const MAYAR_API_URL = process.env.MAYAR_API_URL || 'https://api.mayar.id/hl/v1/payment/create'
-const MAYAR_API_KEY = process.env.MAYAR_API_KEY || ''
+const MAYAR_API_URL = process.env.MAYAR_API_URL
+const MAYAR_API_KEY = process.env.MAYAR_API_KEY
+
+if (!MAYAR_API_URL || !MAYAR_API_KEY) {
+  console.warn('[server] Warning: MAYAR_API_URL or MAYAR_API_KEY not set. Payment endpoint will return errors.')
+}
 
 app.use(express.json())
 
@@ -24,8 +28,8 @@ app.post('/api/payment', async (req, res) => {
     return res.status(400).json({ error: 'Missing required fields: amount, name, email, mobile' })
   }
 
-  if (!MAYAR_API_KEY) {
-    console.error('[payment] MAYAR_API_KEY is not configured')
+  if (!MAYAR_API_KEY || !MAYAR_API_URL) {
+    console.error('[payment] MAYAR_API_KEY or MAYAR_API_URL is not configured')
     return res.status(500).json({ error: 'Payment service is not configured' })
   }
 

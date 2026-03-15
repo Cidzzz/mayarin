@@ -53,7 +53,7 @@ export default function Hero({ showCta, onCtaClick }) {
               <span className="text-gray-300 hidden sm:inline">→</span>
               <span className="flex items-center gap-1.5">
                 <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold flex items-center justify-center shrink-0">3</span>
-                Kirim &amp; bayar
+                Kirim & bayar
               </span>
             </div>
             <button
