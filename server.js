@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import express from 'express'
+import rateLimit from 'express-rate-limit'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -17,11 +18,20 @@ if (!MAYAR_API_URL || !MAYAR_API_KEY) {
 
 app.use(express.json())
 
+// Rate limiter for payment endpoint
+const paymentLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // max 10 payment requests per window per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Terlalu banyak permintaan pembayaran. Coba lagi nanti.' },
+})
+
 // Serve static files from the Vite build output
 app.use(express.static(join(__dirname, 'dist')))
 
 // Payment proxy endpoint — keeps MAYAR_API_KEY server-side only
-app.post('/api/payment', async (req, res) => {
+app.post('/api/payment', paymentLimiter, async (req, res) => {
   const { amount, name, email, mobile, description } = req.body
 
   if (!amount || !name || !email || !mobile) {
