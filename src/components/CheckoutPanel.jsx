@@ -46,7 +46,7 @@ export default function CheckoutPanel({
         <h2 className="text-xs sm:text-sm font-semibold text-gray-400 uppercase tracking-wider">Kirim & Bayar</h2>
       </div>
 
-      <div className="flex-1 glass rounded-[24px] sm:rounded-[28px] p-5 sm:p-7 shadow-xl shadow-emerald-900/[0.04]">
+      <div className="flex-1 glass rounded-[20px] sm:rounded-[28px] p-4 sm:p-7 shadow-xl shadow-emerald-900/[0.04]">
         {/* Header */}
         <div className="flex items-center gap-3 mb-5 pb-4 border-b border-gray-200/60">
           <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md shadow-emerald-600/20">
@@ -160,7 +160,7 @@ export default function CheckoutPanel({
             <div className="h-px bg-emerald-200/40" />
             <div className="flex items-center justify-between">
               <span className="text-gray-800 font-bold">Total Bayar</span>
-              <span className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent">{formatRp(amt)}</span>
+              <span className="text-xl sm:text-3xl font-black bg-gradient-to-r from-emerald-700 to-emerald-500 bg-clip-text text-transparent">{formatRp(amt)}</span>
             </div>
           </div>
 

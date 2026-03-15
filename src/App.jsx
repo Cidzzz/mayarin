@@ -11,8 +11,8 @@ import PaymentResultView from './components/PaymentResultView'
 import Footer from './components/Footer'
 
 /* ── AI config (Gemini via siputzx) ───────────────────────────── */
-const API_BASE = 'https://api.siputzx.my.id/api/ai/gemini-lite'
-const MODEL = 'gemini-2.5-flash'
+const API_BASE = import.meta.env.VITE_AI_API_BASE || 'https://api.siputzx.my.id/api/ai/gemini-lite'
+const MODEL = import.meta.env.VITE_AI_MODEL || 'gemini-2.5-flash'
 
 const SYSTEM_PERSONA = `[SYSTEM PERSONA]
 Kamu adalah "Mayarin", sastrawan jalanan Indonesia yang jago bikin ucapan THR wholesome.
@@ -75,8 +75,7 @@ const NOMINAL_OPTIONS = [
 ]
 
 /* ── Mayar config ─────────────────────────────────────────── */
-const MAYAR_API = 'https://api.mayar.id/hl/v1/payment/create'
-const MAYAR_KEY = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzMzVmN2UyMy04N2Q5LTRiOTItOWZlNi0zNjA4NjNhMWVjMjQiLCJhY2NvdW50SWQiOiJkYzYxNTBmNC1kMDEwLTRlNTMtYTVmMS03NDY2NTBhNWMxZjAiLCJjcmVhdGVkQXQiOiIxNzczMDMwNDYwOTE0Iiwicm9sZSI6ImRldmVsb3BlciIsInN1YiI6ImR3aWFndW5nMjIyNUBnbWFpbC5jb20iLCJuYW1lIjoiTWF5YXJpbiBBSSIsImxpbmsiOiJtYXlhcmluLWFpIiwiaXNTZWxmRG9tYWluIjpudWxsLCJpYXQiOjE3NzMwMzA0NjB9.IyjJFuHDvENElrGx2xvpnzLlRITGeFLuBRBw9l-HTw06FrHdPXuEtq_Y-kmQkl0RXCedehHUByU4iBnuQzBkB59ZPQb4PdLsC04ex_GG7biPDflQx-i-Qq5Oy-vhq9wj8VBV43Av4xFJyvB3EDengwtVqgtHspvXi7EMFhqdGkvWV55x295e7nq5aUldIjTwAfq8l_lHkeEUBgGMTb3JXNgGeudFyerte0NdliLMDD9EXQSG06731TdhJAtFlxIPAAyunSRFZ-KspomhPvRnvZNinkfc9bgruSUQNSSmIr5fP8aXHqOCvrmktTy6TVp0NQlIMZdbTLni1xIXM6zxIA'
+const PAYMENT_API = '/api/payment'
 const PAYMENT_DRAFT_KEY = 'mayarin:last-thr-draft'
 
 /* ── Reveal sparkles on result appear ────────────────────── */
@@ -222,12 +221,13 @@ export default function App() {
 
     const fullPrompt = `${SYSTEM_PERSONA}\n\n[USER]\n${userMsg}\n\n[ASSISTANT]`
 
-    const url = new URL(API_BASE)
-    url.searchParams.set('prompt', fullPrompt)
-    url.searchParams.set('model', MODEL)
-
     try {
-      const res = await fetch(url.toString(), { signal: AbortSignal.timeout(60000) })
+      const res = await fetch(API_BASE, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: fullPrompt, model: MODEL }),
+        signal: AbortSignal.timeout(60000),
+      })
       if (!res.ok) throw new Error(`Server error (${res.status})`)
 
       const raw = await res.text()
@@ -310,12 +310,9 @@ export default function App() {
 
     setPaying(true)
     try {
-      const res = await fetch(MAYAR_API, {
+      const res = await fetch(PAYMENT_API, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${MAYAR_KEY}`,
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           amount: amt,
           name: sender.name.trim(),
@@ -325,7 +322,7 @@ export default function App() {
         }),
       })
       const json = await res.json()
-      if (json?.data?.link) {
+      if (json?.link) {
         localStorage.setItem(PAYMENT_DRAFT_KEY, JSON.stringify({
           amount: amt,
           sender: {
@@ -346,9 +343,9 @@ export default function App() {
           },
           createdAt: new Date().toISOString(),
         }))
-        window.location.href = json.data.link
+        window.location.href = json.link
       } else {
-        setPayError(json?.messages || 'Link pembayaran gagal dibuat — coba sekali lagi.')
+        setPayError(json?.error || 'Link pembayaran gagal dibuat — coba sekali lagi.')
       }
     } catch (err) {
       setPayError(`Koneksi bermasalah: ${err.message}`)
@@ -480,7 +477,7 @@ export default function App() {
 
         <div id="main-section" />
 
-        <div className="max-w-xl mx-auto px-5 sm:px-6 mb-4">
+        <div className="max-w-xl mx-auto px-4 sm:px-6 mb-4">
           <StepIndicator current={currentStep} />
         </div>
 
@@ -500,11 +497,11 @@ export default function App() {
 
         {/* Step 2 & 3: Result + Checkout */}
         {result && (
-          <section className={`relative max-w-6xl mx-auto px-5 sm:px-6 pb-16 sm:pb-20 transition-all duration-500 ease-out ${
+          <section className={`relative max-w-6xl mx-auto px-4 sm:px-6 pb-12 sm:pb-20 transition-all duration-500 ease-out ${
             showResult ? 'opacity-100' : 'opacity-0 translate-y-8'
           }`}>
             {showResult && <RevealSparkles />}
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 sm:gap-8">
               {/* Left — Card preview (3/5) */}
               <div className={`lg:col-span-3 ${showResult ? 'animate-reveal-card' : ''}`}>
                 <ResultCard

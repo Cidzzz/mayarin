@@ -11,7 +11,7 @@ export default function Hero({ showCta, onCtaClick }) {
         <Star className="w-6 h-6 text-gold-400/30 fill-gold-400/30" />
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-5 sm:px-6 pt-16 sm:pt-24 pb-10 sm:pb-14 text-center">
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 pt-12 sm:pt-24 pb-8 sm:pb-14 text-center">
         {/* Badge */}
         <div className="animate-fade-in inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-emerald-200/60 shadow-sm mb-6 sm:mb-8">
           <div className="flex items-center gap-1">
@@ -23,7 +23,7 @@ export default function Hero({ showCta, onCtaClick }) {
         </div>
 
         {/* Heading */}
-        <h1 className="animate-fade-in text-3xl sm:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-tight text-gray-900 mb-5 sm:mb-6" style={{ animationDelay: '100ms' }}>
+        <h1 className="animate-fade-in text-2xl sm:text-5xl lg:text-[3.5rem] leading-[1.15] tracking-tight text-gray-900 mb-4 sm:mb-6" style={{ animationDelay: '100ms' }}>
           <span className="font-semibold">Lebaran makin berkesan</span>
           <br />
           <span className="font-serif font-black italic bg-gradient-to-r from-emerald-700 via-emerald-400 to-emerald-700 bg-[length:200%_100%] bg-clip-text text-transparent animate-gradient-shift">
@@ -40,25 +40,25 @@ export default function Hero({ showCta, onCtaClick }) {
         {/* How it works — 3 steps */}
         {showCta && (
           <div className="animate-fade-in mt-10 sm:mt-12" style={{ animationDelay: '350ms' }}>
-            <div className="flex items-center justify-center gap-3 sm:gap-5 text-xs sm:text-sm text-gray-400 mb-8">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-5 text-[11px] sm:text-sm text-gray-400 mb-8">
               <span className="flex items-center gap-1.5">
-                <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold flex items-center justify-center">1</span>
+                <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold flex items-center justify-center shrink-0">1</span>
                 Ceritakan penerima
               </span>
-              <span className="text-gray-300">→</span>
+              <span className="text-gray-300 hidden sm:inline">→</span>
               <span className="flex items-center gap-1.5">
-                <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold flex items-center justify-center">2</span>
+                <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold flex items-center justify-center shrink-0">2</span>
                 Generate kartu visual
               </span>
-              <span className="text-gray-300">→</span>
+              <span className="text-gray-300 hidden sm:inline">→</span>
               <span className="flex items-center gap-1.5">
-                <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold flex items-center justify-center">3</span>
-                Kirim & bayar
+                <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold flex items-center justify-center shrink-0">3</span>
+                Kirim &amp; bayar
               </span>
             </div>
             <button
               onClick={onCtaClick}
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-2xl transition-all duration-300 shadow-xl shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:scale-[1.02] cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 sm:px-7 sm:py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-2xl transition-all duration-300 shadow-xl shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:scale-[1.02] cursor-pointer text-sm sm:text-base"
             >
               <Moon className="w-4 h-4" />
               Buat THR Sekarang

@@ -4,5 +4,5 @@ set -e
 cd /root/Mayar/kado-ai
 echo "[$(date)] Rebuilding kado-ai..."
 npx vite build --logLevel error
-echo "[$(date)] Build done. Serving on port 3030"
-exec serve -s dist -l 3030 --no-clipboard
+echo "[$(date)] Build done. Starting server on port ${PORT:-3030}"
+exec node server.js
