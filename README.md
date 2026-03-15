@@ -1,16 +1,35 @@
-# React + Vite
+# 🌙 Mayarin AI - Kirim Kado & THR Digital Dirancang oleh AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Vibecoding Ramadhan 2026](https://img.shields.io/badge/Event-Vibecoding_Ramadhan_2026-10b981?style=for-the-badge)
+![Powered by Gemini](https://img.shields.io/badge/AI_Engine-Google_Gemini-blue?style=for-the-badge)
+![Payment by Mayar](https://img.shields.io/badge/Payment-Mayar_Sandbox-blue?style=for-the-badge)
 
-Currently, two official plugins are available:
+## 🚀 Tentang Proyek
+**Mayarin AI** (plesetan dari "Bayarin" dan "Mayar") adalah platform pengiriman Kado dan THR digital revolusioner yang dirancang khusus untuk menyambut Ramadhan dan Idul Fitri. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Menggantikan tradisi transfer uang yang kaku, Mayarin AI menggunakan *Generative AI* untuk meracik ucapan personal dan pantun lucu berdasarkan karakter penerima, lalu mengintegrasikannya dengan *payment gateway* untuk pengalaman berbagi THR yang *seamless* dan bermakna.
 
-## React Compiler
+## 🤖 Proses "Vibecoding" (AI Agentic Development)
+Proyek ini dibangun 100% menggunakan metodologi *Vibecoding*. Alih-alih menulis *boilerplate* manual, pengembangan dilakukan dengan mengarahkan LLM sebagai kuli koding:
+1. **UI/UX Generation:** Menggunakan prompt deskriptif untuk menghasilkan UI berbasis React & Tailwind dengan nuansa *Modern SaaS* (Emerald Green & Gold) via [v0 by Vercel / Cursor].
+2. **Logic & API Integration:** Menjalankan *System Context* (Mega-Prompt) yang menginstruksikan AI untuk membangun *state management* yang menjahit form input, fetch ke Gemini API, dan transisi ke UI hasil secara mulus.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Fitur Utama
+- **Generative Greeting (Gemini API):** Otomatis membuatkan ucapan dan pantun Lebaran yang hangat dan lucu berdasarkan konteks profil penerima.
+- **Split-Layout Result UI:** Menampilkan amplop digital estetik di satu sisi, dan form nominal THR di sisi lainnya.
+- **Seamless Checkout (Mayar Integration):** Pembuatan *Payment Link* instan menggunakan API Mayar.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
+- **Frontend:** React.js / Next.js, Tailwind CSS, Lucide Icons
+- **AI Engine:** Google Gemini Pro API (REST)
+- **Payment Gateway:** Mayar API 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ⚠️ Catatan Khusus untuk Juri (Integrasi Mayar)
+Integrasi *payment gateway* Mayar pada repositori dan *live demo* ini secara sengaja diatur menggunakan **Environment Sandbox (Mode Uji Coba)**. 
+Oleh karena itu, saat di-*redirect* ke halaman *checkout* Mayar, opsi pembayaran *live* seperti QRIS atau Virtual Account mungkin tidak ditampilkan oleh sistem Mayar demi alasan keamanan (*unverified testing account*). Logika *API Request* dan integrasi *payload* telah berjalan 100% sukses. Transisi ke *Production* dapat dilakukan hanya dengan menukar `MAYAR_API_KEY` di *Environment Variables*.
+
+## 💻 Cara Menjalankan di Lokal (Local Setup)
+
+1. Clone repositori ini:
+   ```bash
+   git clone [https://github.com/username-kamu/mayarin-ai.git](https://github.com/username-kamu/mayarin-ai.git)
