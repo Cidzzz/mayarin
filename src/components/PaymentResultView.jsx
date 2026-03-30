@@ -50,10 +50,10 @@ export default function PaymentResultView({
     : null
 
   return (
-    <section className="max-w-6xl mx-auto px-5 sm:px-6 py-10 sm:py-14">
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8">
+    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-14">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 sm:gap-8">
         <div className="lg:col-span-2">
-          <div className="glass rounded-3xl p-5 sm:p-6 shadow-xl shadow-emerald-900/[0.04]">
+          <div className="glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl shadow-emerald-900/[0.04]">
             <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${meta.iconBg} flex items-center justify-center shadow-xl mb-5`}>
               <Icon className="w-8 h-8 text-white" />
             </div>

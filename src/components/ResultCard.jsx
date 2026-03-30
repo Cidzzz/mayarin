@@ -18,15 +18,15 @@ export default function ResultCard({
         <h2 className="text-xs sm:text-sm font-semibold text-gray-400 uppercase tracking-wider">Amplop THR Digital</h2>
       </div>
 
-      <div data-export-target="thr-visual-card" className="flex-1 relative rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-2xl shadow-emerald-900/20 animate-pulse-glow">
+      <div data-export-target="thr-visual-card" className="flex-1 relative rounded-[20px] sm:rounded-[28px] overflow-hidden shadow-2xl shadow-emerald-900/20 animate-pulse-glow">
         {/* Multi-layer background */}
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-800 via-emerald-900 to-emerald-950" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(250,204,21,0.08),transparent_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(16,185,129,0.15),transparent_60%)]" />
 
         {/* Gold frames */}
-        <div className="absolute inset-[4px] rounded-[20px] sm:rounded-[24px] border border-gold-400/20" />
-        <div className="absolute inset-[12px] rounded-[16px] sm:rounded-[20px] border border-gold-400/10" />
+        <div className="absolute inset-[3px] sm:inset-[4px] rounded-[17px] sm:rounded-[24px] border border-gold-400/20" />
+        <div className="absolute inset-[10px] sm:inset-[12px] rounded-[13px] sm:rounded-[20px] border border-gold-400/10" />
 
         {/* Corner ornaments */}
         {[
@@ -53,7 +53,7 @@ export default function ResultCard({
         </div>
 
         {/* Card content */}
-        <div className="relative z-10 p-6 sm:p-10 lg:p-12">
+        <div className="relative z-10 p-5 sm:p-10 lg:p-12">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/15 mb-8 sm:mb-10 animate-stamp">
             <Moon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-gold-400" />
@@ -62,7 +62,7 @@ export default function ResultCard({
 
           {/* Recipient */}
           <p className="text-emerald-300/50 text-[10px] uppercase tracking-[0.2em] mb-1.5">Khusus untuk</p>
-          <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-1 leading-tight">
+          <h3 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-1 leading-tight">
             {result.nama}
           </h3>
           {result.hubungan && (

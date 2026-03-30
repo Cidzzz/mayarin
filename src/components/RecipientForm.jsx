@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Sparkles, ArrowRight, AlertCircle, Moon, Star, ImagePlus, X } from 'lucide-react'
 
 /* Animated loading state for AI generation */
@@ -55,11 +56,12 @@ export default function RecipientForm({
   generating,
   aiError,
 }) {
+  const [nameTouched, setNameTouched] = useState(false)
   const isValid = form.nama.trim().length > 0
 
   return (
-    <section className="max-w-xl mx-auto px-5 sm:px-6 pb-16 animate-fade-in-up">
-      <div className="relative glass rounded-3xl p-6 sm:p-10 shadow-xl shadow-emerald-900/[0.04]">
+    <section className="max-w-xl mx-auto px-4 sm:px-6 pb-12 sm:pb-16 animate-fade-in-up">
+      <div className="relative glass rounded-2xl sm:rounded-3xl p-5 sm:p-10 shadow-xl shadow-emerald-900/[0.04]">
         {generating && <AILoadingOverlay recipientName={form.nama} />}
 
         {/* Section header */}
@@ -83,6 +85,7 @@ export default function RecipientForm({
               placeholder="Siapa yang mau di-THR-in?"
               value={form.nama}
               onChange={(e) => setForm({ ...form, nama: e.target.value })}
+              onBlur={() => setNameTouched(true)}
               className="w-full rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-400 transition placeholder:text-gray-400"
             />
           </div>
@@ -152,7 +155,7 @@ export default function RecipientForm({
             onClick={onGenerate}
             disabled={generating || !isValid}
             className={`
-              w-full flex items-center justify-center gap-2.5 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 cursor-pointer
+              w-full flex items-center justify-center gap-2.5 text-white font-bold py-3.5 sm:py-4 px-6 rounded-2xl transition-all duration-300 cursor-pointer text-sm sm:text-base
               ${isValid && !generating
                 ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 shadow-xl shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:scale-[1.01]'
                 : 'bg-gray-300 cursor-not-allowed shadow-none'
@@ -164,7 +167,7 @@ export default function RecipientForm({
             <ArrowRight className="w-4 h-4" />
           </button>
 
-          {!isValid && form.nama !== undefined && (
+          {nameTouched && !isValid && (
             <p className="text-center text-xs text-gray-400">Isi nama dulu biar bisa lanjut ☝️</p>
           )}
 
